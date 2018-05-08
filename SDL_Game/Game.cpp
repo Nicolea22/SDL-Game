@@ -54,7 +54,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update() 
 {
-	m_sourceRectangle.x = m_sourceRectangle.w * int(((SDL_GetTicks()/100) % 6));
+
 }
 
 void Game::render() 
