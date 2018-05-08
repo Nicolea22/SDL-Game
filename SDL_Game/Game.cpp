@@ -17,21 +17,21 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	// attempts to initialize SDL
 	if (SDL_Init(init_param) == 0)
 	{
-		cout << "SDL Init success" << endl;
+		cout << "SDL Init success!" << endl;
 		// init the window
 		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, window_flag);
 
 		if (m_pWindow != NULL)
 		{
 			// init renderer
-			cout << "Window creation success" << endl;
+			cout << "Window creation success!" << endl;
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
 
 			if (m_pRenderer != NULL) 
 			{
 				// set the renderer obj
-				cout << "Renderer creation succes" << endl;
-				SDL_SetRenderDrawColor(m_pRenderer, 255, 255 , 255, 255);
+				cout << "Renderer creation succes!" << endl;
+				SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 			}
 		}
 		else 
@@ -48,18 +48,19 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		return false;
 	}
 
-	cout << "Init success" << endl; // everything succededs
+	cout << "Init success!" << endl; // everything succededs
 	return true;
 }
 
 void Game::update() 
 {
-	
+	m_sourceRectangle.x = m_sourceRectangle.w * int(((SDL_GetTicks()/100) % 6));
 }
 
 void Game::render() 
 {
 	SDL_RenderClear(m_pRenderer); // clear the screen with the draw color to draw a new updated frame
+	//SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE);
 	SDL_RenderPresent(m_pRenderer); // draw the new frame
 }
 
@@ -69,6 +70,7 @@ void Game::clean()
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
+	IMG_Quit();
 }
 
 

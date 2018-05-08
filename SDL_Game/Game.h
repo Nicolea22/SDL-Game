@@ -1,6 +1,7 @@
 #ifndef __GAME__
 #define __GAME__
 #include <SDL.h>
+#include <SDL_image.h>
 
 class Game 
 {
@@ -55,6 +56,5 @@ private:
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
-
 };
 #endif
