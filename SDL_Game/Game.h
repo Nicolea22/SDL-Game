@@ -1,7 +1,6 @@
 #ifndef __GAME__
 #define __GAME__
-#include <SDL.h>
-#include <SDL_image.h>
+#include "TextureManager.h"
 
 class Game 
 {
@@ -56,5 +55,8 @@ private:
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
+
+	TextureManager* m_texture_manager;
+	int m_current_frame;
 };
 #endif

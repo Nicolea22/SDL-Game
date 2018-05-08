@@ -4,8 +4,7 @@
 using namespace std;
 
 Game::Game() 
-{
-}
+{}
 
 Game::~Game()
 {}
@@ -48,20 +47,23 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		return false;
 	}
 
+	m_texture_manager = new TextureManager();
+	m_texture_manager->load("assets/animatealpha.png", "animate", m_pRenderer);
+
 	cout << "Init success!" << endl; // everything succededs
 	return true;
 }
 
 void Game::update() 
 {
-
+	m_current_frame = SDL_GetTicks() / 100 % 6;
 }
 
 void Game::render() 
 {
 	SDL_RenderClear(m_pRenderer); // clear the screen with the draw color to draw a new updated frame
-	//SDL_RenderCopyEx(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle, 0, 0, SDL_FLIP_NONE);
-	SDL_RenderPresent(m_pRenderer); // draw the new frame
+	m_texture_manager->draw_frame("animate", 0, 0, 128, 82, 0, m_current_frame, m_pRenderer);
+	SDL_RenderPresent(m_pRenderer);
 }
 
 void Game::clean()
