@@ -3,16 +3,28 @@
 
 using namespace std;
 
-Game::Game() 
-{}
+typedef TextureManager TheTextureManager;
+
+Game::Game()
+{
+	m_player = new Player();
+	m_player->load(300, 200, 128, 82, "animate");
+
+	m_go = new GameObject();
+	m_go->load(300, 300, 128, 82, "animate");
+
+	m_gos.push_back(m_player);
+	m_gos.push_back(m_go);
+	
+}
 
 Game::~Game()
 {}
 
-bool Game::init(const char* title, int xpos, int ypos, int width, int height, int window_flag, Uint32 init_param, bool is_running) 
+bool Game::init(const char* title, int xpos, int ypos, int width, int height, int window_flag, Uint32 init_param, bool is_running)
 {
 	m_bRunning = is_running;
-	
+
 	// attempts to initialize SDL
 	if (SDL_Init(init_param) == 0)
 	{
@@ -26,29 +38,28 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 			cout << "Window creation success!" << endl;
 			m_pRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED);
 
-			if (m_pRenderer != NULL) 
+			if (m_pRenderer != NULL)
 			{
 				// set the renderer obj
 				cout << "Renderer creation succes!" << endl;
 				SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
 			}
 		}
-		else 
+		else
 		{
 			cout << "Renderer creation fail!" << endl;
 			m_bRunning = false;
 			return false;
 		}
 	}
-	else 
+	else
 	{
 		cout << "Window creation fail!" << endl;
 		m_bRunning = false;
 		return false;
 	}
 
-	m_texture_manager = new TextureManager();
-	m_texture_manager->load("assets/animatealpha.png", "animate", m_pRenderer);
+	TheTextureManager::Instance()->load("assets/animatealpha.png", "animate", m_pRenderer);
 
 	cout << "Init success!" << endl; // everything succededs
 	return true;
@@ -56,13 +67,21 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update() 
 {
-	m_current_frame = SDL_GetTicks() / 100 % 6;
+	for (int i = 0; i < m_gos.size(); i++)
+	{
+		m_gos[i]->update();
+	}
 }
 
 void Game::render() 
 {
 	SDL_RenderClear(m_pRenderer); // clear the screen with the draw color to draw a new updated frame
-	m_texture_manager->draw_frame("animate", 0, 0, 128, 82, 0, m_current_frame, m_pRenderer);
+
+	for (int i = 0; i < m_gos.size(); i++)
+	{
+		m_gos[i]->draw(m_pRenderer);
+	}
+
 	SDL_RenderPresent(m_pRenderer);
 }
 
@@ -89,7 +108,6 @@ void Game::handleEvents()
 		default:
 			break;
 		}
-
 	}
 }
 

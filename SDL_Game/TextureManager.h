@@ -6,12 +6,16 @@
 
 using namespace std;
 
-class TextureManager 
+class TextureManager
 {
-public:
+private:
+
+	std::map<std::string, SDL_Texture*> m_textureMap;
+	static TextureManager* instance;
 
 	TextureManager();
-	~TextureManager();
+
+public:
 
 	/**
 	*\brief -Load an image-
@@ -23,7 +27,7 @@ public:
 	bool load(string file_name, string id, SDL_Renderer* renderer);
 
 	/**
-	*\brief draw -draw a entire sprite sheet on the screen-
+	*\brief draw -draw an entire sprite sheet on the screen-
 	*/
 	void draw(string id, int x, int y, int width, int height, SDL_Renderer* renderer, 
 			  SDL_RendererFlip flip = SDL_FLIP_NONE);
@@ -44,8 +48,10 @@ public:
 	void draw_frame(string id, int x, int y, int width, int height, int current_row, int current_frame
 				   ,SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-private:
+	/**
+	*\brief - Get the singleton instance of TextureManager -
+	*/
 
-	std::map<std::string, SDL_Texture*> m_textureMap;
-
+	static TextureManager* Instance();
+	
 };

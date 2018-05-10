@@ -1,4 +1,8 @@
 ﻿  Game.cpp
-  TextureManager.cpp
+c:\users\leandro\source\repos\sdl-game\sdl_game\game.cpp(70): warning C4018: '<': no coinciden signed/unsigned
+c:\users\leandro\source\repos\sdl-game\sdl_game\game.cpp(80): warning C4018: '<': no coinciden signed/unsigned
+  GameObject.cpp
+  Player.cpp
+  main.cpp
   Generando código...
   SDL_Game.vcxproj -> C:\Users\Leandro\source\repos\SDL-Game\Debug\SDL_Game.exe

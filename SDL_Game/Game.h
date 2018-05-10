@@ -1,8 +1,11 @@
 #ifndef __GAME__
 #define __GAME__
+#include <vector>
 #include "TextureManager.h"
+#include "GameObject.h"
+#include "Player.h"
 
-class Game 
+class Game
 {
 public:
 
@@ -17,15 +20,15 @@ public:
 	* \param y_pos -window's y position on the screen-
 	* \param width -window's width-
 	* \param width -window's height-
-	* \param window_flag -the window flag, it can be chosen from SDL screen flags- 
+	* \param window_flag -the window flag, it can be chosen from SDL screen flags-
 	* \param init_params -init params to SDL-
 	* \param is_running -flag-  default value= true
 	*/
 	bool init(const char* title, int xpos, int ypos, int width, int height, int window_flag,
-			  Uint32 init_params, bool is_running = true);
+		Uint32 init_params, bool is_running = true);
 
 	/**
-	* \brief 
+	* \brief
 	*/
 	void update();
 
@@ -50,13 +53,13 @@ public:
 	bool running() { return m_bRunning; };
 
 private:
-	
+
 	bool m_bRunning;
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
-	TextureManager* m_texture_manager;
-	int m_current_frame;
+	vector<GameObject*> m_gos;
+
 };
 #endif
