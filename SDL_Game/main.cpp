@@ -1,9 +1,10 @@
 #include "Game.h"
 
+typedef Game TheGame;
 
 int main(int argc, char* argv[])
 {
-	Game* game = new Game();
+	Game* game = TheGame::Instance();
 	game->init("SDL tutorial: chapter 1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_RESIZABLE, 
 				SDL_INIT_AUDIO | SDL_INIT_VIDEO);
 
@@ -14,9 +15,7 @@ int main(int argc, char* argv[])
 		game->render();
 		SDL_Delay(10);
 	}
-
 	game->clean();
-
 	return 0;
 }
 

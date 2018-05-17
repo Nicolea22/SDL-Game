@@ -1,23 +1,15 @@
 #ifndef __PLAYER__
 #define __PLAYER__
-#include "GameObject.h"
+#include "SDLGameObject.h"
 
-class Player : public GameObject
+class Player : public SDLGameObject
 {
 public:
 
-	Player();
+	Player(const Parameters* parameters);
 
-	void load(int x, int y, int width, int height, string textureID);
-	void draw(SDL_Renderer* renderer);
-	void update();
-
-protected:
-	
-	
-private:
-
-
+	virtual void update();
+	virtual void clean() {};
 
 };
 #endif

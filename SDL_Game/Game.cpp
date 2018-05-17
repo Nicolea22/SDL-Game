@@ -1,22 +1,26 @@
-#include "Game.h"
 #include <iostream>
+#include "Game.h"
+#include "Enemy.h"
+#include "Player.h"
 
 using namespace std;
 
 typedef TextureManager TheTextureManager;
 
-Game::Game()
+Game* Game::instance = NULL;
+
+Game* Game::Instance() 
 {
-	m_player = new Player();
-	m_player->load(300, 200, 128, 82, "animate");
-
-	m_go = new GameObject();
-	m_go->load(300, 300, 128, 82, "animate");
-
-	m_gos.push_back(m_player);
-	m_gos.push_back(m_go);
-	
+	if (instance == NULL) 
+	{
+		instance = new Game();
+		return instance;
+	}
+	return instance;
 }
+
+Game::Game()
+{}
 
 Game::~Game()
 {}
@@ -60,6 +64,10 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	}
 
 	TheTextureManager::Instance()->load("assets/animatealpha.png", "animate", m_pRenderer);
+	TheTextureManager::Instance()->load("assets/background.jpg", "background", m_pRenderer);
+
+	//m_gos.push_back(new Player(new Parameters(500, 100, 128, 82, "animate")));
+	m_gos.push_back(new Enemy(new Parameters(-100, 350, 1, 0, 128, 82, "animate")));
 
 	cout << "Init success!" << endl; // everything succededs
 	return true;
@@ -76,10 +84,12 @@ void Game::update()
 void Game::render() 
 {
 	SDL_RenderClear(m_pRenderer); // clear the screen with the draw color to draw a new updated frame
+	
+	TheTextureManager::Instance()->draw("background", 0, 0, 640, 480, get_renderer());
 
-	for (int i = 0; i < m_gos.size(); i++)
+	for (int i = 0; i < m_gos.size(); i++) 
 	{
-		m_gos[i]->draw(m_pRenderer);
+		m_gos[i]->draw(get_renderer());
 	}
 
 	SDL_RenderPresent(m_pRenderer);

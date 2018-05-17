@@ -1,16 +1,13 @@
 #pragma once
-#include "GameObject.h"
+#include "SDLGameObject.h"
 
 
-class Enemy : public GameObject
+class Enemy : public SDLGameObject
 {
 public:
 
-	void load(int x, int y, int width, int height, string textureID);
-	void draw(SDL_Renderer* renderer);
-	void update();
+	Enemy(const Parameters* parameters);
 
-private:
-
-		
+	virtual void update();
+	virtual void clean() {};
 };

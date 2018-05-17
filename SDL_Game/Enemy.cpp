@@ -1,14 +1,10 @@
 #include "Enemy.h"
 
-Enemy::Enemy() {}
-
-
-void Enemy::load(int x, int y, int width, int height, string textureID) 
-{
-	GameObject::load(x, y, width, height, textureID);
-}
+Enemy::Enemy(const Parameters* parameters): SDLGameObject(parameters)
+{}
 
 void Enemy::update() 
 {
-
+	SDLGameObject::update();
+	m_current_frame = (int)SDL_GetTicks() / 60 % 6;
 }

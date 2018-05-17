@@ -1,15 +1,13 @@
 #ifndef __GAME__
 #define __GAME__
+#include "SDLGameObject.h"
 #include <vector>
-#include "TextureManager.h"
-#include "GameObject.h"
-#include "Player.h"
+
 
 class Game
 {
 public:
 
-	Game();
 	~Game();
 
 	/**
@@ -52,14 +50,22 @@ public:
 	*/
 	bool running() { return m_bRunning; };
 
+	SDL_Renderer* get_renderer() const { return m_pRenderer; }
+
+	static Game* Instance();
+
 private:
+
+	Game();
 
 	bool m_bRunning;
 
 	SDL_Window* m_pWindow;
 	SDL_Renderer* m_pRenderer;
 
-	vector<GameObject*> m_gos;
+	static Game* instance;
+
+	vector<SDLGameObject*> m_gos;
 
 };
 #endif
