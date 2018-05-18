@@ -13,7 +13,7 @@ private:
 	std::map<std::string, SDL_Texture*> m_textureMap;
 	static TextureManager* instance;
 
-	TextureManager();
+	TextureManager() {}
 
 public:
 
@@ -55,3 +55,5 @@ public:
 	static TextureManager* Instance();
 	
 };
+
+typedef TextureManager TheTextureManager;

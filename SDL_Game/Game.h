@@ -45,6 +45,8 @@ public:
 	*/
 	void clean();
 
+	void quit();
+
 	/**
 	*	\brief -returns the m_bRunning variable-
 	*/
@@ -68,4 +70,7 @@ private:
 	vector<SDLGameObject*> m_gos;
 
 };
+
+typedef Game TheGame;
+
 #endif

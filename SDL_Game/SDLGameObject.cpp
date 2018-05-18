@@ -1,8 +1,10 @@
 #include "SDLGameObject.h"
+#include "Game.h"
 
 SDLGameObject::SDLGameObject(const Parameters* parameters) : GameObject(parameters),
 															 m_position(parameters->get_x(), parameters->get_y()),
-															 m_velocity(parameters->get_vx(), parameters->get_vy())
+															 m_velocity(parameters->get_vx(), parameters->get_vy()),
+															 m_acceleration(0, 0)
 {
 	m_width = parameters->get_width();
 	m_height = parameters->get_height();
@@ -13,14 +15,16 @@ SDLGameObject::SDLGameObject(const Parameters* parameters) : GameObject(paramete
 	m_current_row = 0;
 }
 
-void SDLGameObject::draw(SDL_Renderer* renderer) 
+void SDLGameObject::draw() 
 {
 	TheTextureManager::Instance()->draw_frame(m_textureID, (int)m_position.get_comp_x(),(int)m_position.get_comp_y(), 
-											  m_width, m_height, m_current_row, m_current_frame, renderer);
+											  m_width, m_height, m_current_row, m_current_frame,
+											  TheGame::Instance()->get_renderer());
 }
 
 
 void SDLGameObject::update() 
 {
 	m_position += m_velocity;
+	m_velocity += m_acceleration;
 }

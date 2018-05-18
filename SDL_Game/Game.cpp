@@ -1,11 +1,10 @@
 #include <iostream>
 #include "Game.h"
+#include "InputHandler.h"
 #include "Enemy.h"
 #include "Player.h"
 
 using namespace std;
-
-typedef TextureManager TheTextureManager;
 
 Game* Game::instance = NULL;
 
@@ -67,7 +66,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	TheTextureManager::Instance()->load("assets/background.jpg", "background", m_pRenderer);
 
 	//m_gos.push_back(new Player(new Parameters(500, 100, 128, 82, "animate")));
-	m_gos.push_back(new Enemy(new Parameters(-100, 350, 1, 0, 128, 82, "animate")));
+	m_gos.push_back(new Enemy(new Parameters(-100, 350, 2, 0, 128, 82, "animate")));
 
 	cout << "Init success!" << endl; // everything succededs
 	return true;
@@ -89,7 +88,7 @@ void Game::render()
 
 	for (int i = 0; i < m_gos.size(); i++) 
 	{
-		m_gos[i]->draw(get_renderer());
+		m_gos[i]->draw();
 	}
 
 	SDL_RenderPresent(m_pRenderer);
@@ -98,6 +97,8 @@ void Game::render()
 void Game::clean()
 {
 	cout << "Cleaning game!" << endl;
+	TheInputHandler::Instance()->clean();
+	m_bRunning = false;
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
@@ -105,19 +106,11 @@ void Game::clean()
 }
 
 
+void Game::quit()
+{}
+
 void Game::handleEvents() 
 {
-	SDL_Event event;
-	if (SDL_PollEvent(&event))
-	{
-		switch (event.type)
-		{
-		case SDL_QUIT:
-			m_bRunning = false;
-			break;
-		default:
-			break;
-		}
-	}
+	TheInputHandler::Instance()->update();
 }
 

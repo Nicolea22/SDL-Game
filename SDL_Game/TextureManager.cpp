@@ -13,9 +13,6 @@ TextureManager* TextureManager::Instance()
 	return instance;
 }
 
-TextureManager::TextureManager() 
-{}
-
 bool TextureManager::load(string file_name, string id, SDL_Renderer* renderer) 
 {
 	SDL_Surface* temp_surface = IMG_Load(file_name.c_str());
@@ -35,7 +32,7 @@ bool TextureManager::load(string file_name, string id, SDL_Renderer* renderer)
 	if (texture != 0) 
 	{
 		m_textureMap[id] = texture;
-		cout << "Texture creation success!" << endl;
+		cout << "Texture " <<"'"<< id <<"'"<<" creation success!" << endl;
 		return true;
 	}
 

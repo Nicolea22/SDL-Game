@@ -1,21 +1,34 @@
 #include "Game.h"
 
-typedef Game TheGame;
-
 int main(int argc, char* argv[])
 {
-	Game* game = TheGame::Instance();
-	game->init("SDL tutorial: chapter 1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_RESIZABLE, 
-				SDL_INIT_AUDIO | SDL_INIT_VIDEO);
 
-	while (game->running()) 
+	const int FPS = 60;
+	const int DELAY_TIME = 1000.0f / FPS; // 16,6 miliseconds
+
+	Uint32 frame_start, frame_time = 0;
+
+	TheGame::Instance()->init("SDL tutorial: chapter 1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_RESIZABLE,
+		SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+
+
+	while (TheGame::Instance()->running())
 	{
-		game->handleEvents();
-		game->update();
-		game->render();
-		SDL_Delay(10);
+		frame_start = SDL_GetTicks();
+
+		TheGame::Instance()->handleEvents();
+		TheGame::Instance()->update();
+		TheGame::Instance()->render();
+
+		frame_time = SDL_GetTicks() - frame_start;
+
+		if (frame_time < DELAY_TIME)
+		{
+			SDL_Delay((int)(DELAY_TIME - frame_time));
+		}
 	}
-	game->clean();
+
+	TheGame::Instance()->clean();
 	return 0;
 }
 
