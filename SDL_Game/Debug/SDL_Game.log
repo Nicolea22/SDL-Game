@@ -1,19 +1,11 @@
-﻿  Enemy.cpp
-  Game.cpp
-c:\users\leandro\source\repos\sdl-game\sdl_game\game.cpp(77): warning C4018: '<': no coinciden signed/unsigned
-c:\users\leandro\source\repos\sdl-game\sdl_game\game.cpp(89): warning C4018: '<': no coinciden signed/unsigned
-  InputHandler.cpp
-c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(146): warning C4018: '<': no coinciden signed/unsigned
-c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(159): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
-c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(163): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
-c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(175): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
-c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(179): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
+﻿  InputHandler.cpp
+c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(144): warning C4018: '<': no coinciden signed/unsigned
+c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(157): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(161): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(173): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\leandro\source\repos\sdl-game\sdl_game\inputhandler.cpp(177): warning C4244: 'return': conversión de 'float' a 'int'; posible pérdida de datos
   Player.cpp
-c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(27): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
 c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(30): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-  SDLGameObject.cpp
-  TextureManager.cpp
-  main.cpp
-c:\users\leandro\source\repos\sdl-game\sdl_game\main.cpp(7): warning C4244: 'inicializando': conversión de 'float' a 'int'; posible pérdida de datos
+c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(33): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   Generando código...
   SDL_Game.vcxproj -> C:\Users\Leandro\source\repos\SDL-Game\Debug\SDL_Game.exe

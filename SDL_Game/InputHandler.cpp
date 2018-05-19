@@ -28,6 +28,7 @@ void InputHandler::initialise_joysticks()
 			SDL_Joystick* joy = SDL_JoystickOpen(i);
 			if (joy) 
 			{
+				cout << "joystick " << i << " initialiased!" << endl;
 				m_joysticks.push_back(joy);
 				m_joystick_values.push_back(make_pair(new Vector2D(0, 0), new Vector2D(0, 0)));
 			}
@@ -40,7 +41,7 @@ void InputHandler::initialise_joysticks()
 		SDL_JoystickEventState(SDL_ENABLE);
 		m_bJoysticksInitialised = true;
 
-		std::cout << "Initialised " << m_joysticks.size() << "joystick(s)";
+		std::cout << "Initialised " << m_joysticks.size() << " joystick(s)";
 	}
 	else
 		m_bJoysticksInitialised = false;
@@ -64,49 +65,46 @@ void InputHandler::update()
 			int which_one = event.jaxis.which;
 
 			// left stick move left or right
-			if (event.jaxis.value == 0)
+			if (event.jaxis.axis == 0)
 			{
-				if (event.jaxis.value > m_joystick_deadzone) 
+				if (event.jaxis.value > JOYSTICK_RESOLUTION) 
 				{
 					m_joystick_values[which_one].first->set_comp_x(1);
 				}else 
-					if (event.jaxis.value < -m_joystick_deadzone) 
+					if (event.jaxis.value < -JOYSTICK_RESOLUTION) 
 					{
 						m_joystick_values[which_one].first->set_comp_x(-1);
 					}else 
-						{
-						m_joystick_values[which_one].first->set_comp_x(0);
+						{			
+							m_joystick_values[which_one].first->set_comp_x(0);
 						}
-
 			}
 
 			// left stick move up or down
-			if (event.jaxis.value == 1) 
+			if (event.jaxis.axis == 1) 
 			{
-				if (event.jaxis.value > m_joystick_deadzone)
+				if (event.jaxis.value > JOYSTICK_RESOLUTION)
 				{
 					m_joystick_values[which_one].first->set_comp_y(1);
-				}
-				else
-					if (event.jaxis.value < -m_joystick_deadzone)
+				}else
+					if (event.jaxis.value < -JOYSTICK_RESOLUTION)
 					{
 						m_joystick_values[which_one].first->set_comp_y(-1);
-					}
-					else
-					{
-						m_joystick_values[which_one].first->set_comp_y(0);
-					}
+					}else
+						{
+							m_joystick_values[which_one].first->set_comp_y(0);
+						}
 			}
 
 			// right stick move left or right
-			if (event.jaxis.value == 3) 
+			if (event.jaxis.axis == 3) 
 			{
-				if (event.jaxis.value > m_joystick_deadzone)
+				if (event.jaxis.value > JOYSTICK_RESOLUTION)
 				{
 					m_joystick_values[which_one].second->set_comp_x(1);
 				}
 				else
-					if (event.jaxis.value < -m_joystick_deadzone)
+					if (event.jaxis.value < -JOYSTICK_RESOLUTION)
 					{
 						m_joystick_values[which_one].second->set_comp_x(-1);
 					}
@@ -117,14 +115,14 @@ void InputHandler::update()
 			}
 
 			// right stick move up or down
-			if (event.jaxis.value == 4) 
+			if (event.jaxis.axis == 4) 
 			{
-				if (event.jaxis.value > m_joystick_deadzone)
+				if (event.jaxis.value > JOYSTICK_RESOLUTION)
 				{
 					m_joystick_values[which_one].second->set_comp_y(1);
 				}
 				else
-					if (event.jaxis.value < -m_joystick_deadzone)
+					if (event.jaxis.value < -JOYSTICK_RESOLUTION)
 					{
 						m_joystick_values[which_one].second->set_comp_y(-1);
 					}

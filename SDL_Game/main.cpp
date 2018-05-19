@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 
 	Uint32 frame_start, frame_time = 0;
 
-	TheGame::Instance()->init("SDL tutorial: chapter 1", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_RESIZABLE,
+	TheGame::Instance()->init("SDL Window", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_RESIZABLE,
 		SDL_INIT_AUDIO | SDL_INIT_VIDEO);
 
 

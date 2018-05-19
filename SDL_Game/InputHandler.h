@@ -9,7 +9,7 @@ class InputHandler
 {
 public:
 	
-	const int m_joystick_deadzone = 10000;
+	const int JOYSTICK_RESOLUTION = 10000;
 
 	void update();
 	void clean();

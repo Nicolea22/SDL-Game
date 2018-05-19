@@ -11,6 +11,9 @@ void Player::update()
 	m_velocity.set_comp_x(0);
 	m_acceleration.set_comp_x(0);
 
+	m_velocity.set_comp_y(0);
+	m_acceleration.set_comp_y(0);
+
 	handle_input();
 
 	m_current_frame = (int)SDL_GetTicks() / 100 % 6;
@@ -27,7 +30,7 @@ void Player::handle_input()
 			m_velocity.set_comp_x(1 * joystick->x_value(0, 1));
 
 		if (joystick->y_value(0, 1) > 0 || joystick->y_value(0, 1) < 0)
-			m_velocity.set_comp_x(1 * joystick->y_value(0, 1));
+			m_velocity.set_comp_y(1 * joystick->y_value(0, 1));
 
 	}
 }

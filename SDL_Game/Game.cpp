@@ -66,9 +66,12 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	TheTextureManager::Instance()->load("assets/background.jpg", "background", m_pRenderer);
 
 	//m_gos.push_back(new Player(new Parameters(500, 100, 128, 82, "animate")));
-	m_gos.push_back(new Enemy(new Parameters(-100, 350, 2, 0, 128, 82, "animate")));
+	m_gos.push_back(new Player(new Parameters(0, 350, 2, 0, 128, 82, "animate")));
 
 	cout << "Init success!" << endl; // everything succededs
+
+	TheInputHandler::Instance()->initialise_joysticks(); // init joysticks
+
 	return true;
 }
 
