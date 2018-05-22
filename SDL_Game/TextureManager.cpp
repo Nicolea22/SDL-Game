@@ -41,6 +41,11 @@ bool TextureManager::load(string file_name, string id, SDL_Renderer* renderer)
 	return false;
 }
 
+void TextureManager::flip_image(SDL_RendererFlip flip) 
+{
+	this->flip = flip;
+}
+
 void TextureManager::draw(string id, int x, int y, int width, int height, SDL_Renderer* renderer,
 						  SDL_RendererFlip flip)
 {
@@ -74,7 +79,7 @@ void TextureManager::draw_frame(string id, int x, int y, int width, int height, 
 	dest_rect.x = x;
 	dest_rect.y = y;
 
-	SDL_RenderCopyEx(renderer, m_textureMap[id], &src_rect, &dest_rect, 0, 0, flip);
+	SDL_RenderCopyEx(renderer, m_textureMap[id], &src_rect, &dest_rect, 0, 0, this->flip);
 }
 
 

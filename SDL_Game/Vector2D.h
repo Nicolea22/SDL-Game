@@ -21,6 +21,15 @@ public:
 	Vector2D operator-(const Vector2D& v2) const;
 	Vector2D operator*(float scalar) const;
 	Vector2D operator/(float scalar) const;
+
+	Vector2D& operator = (float scalar) 
+	{
+		m_x = scalar;
+		m_y = scalar;
+
+		return *this;
+	}
+
 	
 	friend Vector2D& operator += (Vector2D& v1, const Vector2D& v2) 
 	{
@@ -53,6 +62,7 @@ public:
 
 		return *this;
 	}
+
 
 private:
 

@@ -129,7 +129,9 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="Joystick.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="Parameters.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SDLGameObject.cpp" />
@@ -141,6 +143,8 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Joystick.h" />
+    <ClInclude Include="Mouse.h" />
     <ClInclude Include="Parameters.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SDLGameObject.h" />

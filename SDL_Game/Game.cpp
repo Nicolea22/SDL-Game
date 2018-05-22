@@ -32,6 +32,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 	if (SDL_Init(init_param) == 0)
 	{
 		cout << "SDL Init success!" << endl;
+
+		SDL_ShowCursor(SDL_ENABLE);
+
 		// init the window
 		m_pWindow = SDL_CreateWindow(title, xpos, ypos, width, height, window_flag);
 
@@ -62,15 +65,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		return false;
 	}
 
+	// TODO: wrap this ******** 
 	TheTextureManager::Instance()->load("assets/animatealpha.png", "animate", m_pRenderer);
 	TheTextureManager::Instance()->load("assets/background.jpg", "background", m_pRenderer);
 
-	//m_gos.push_back(new Player(new Parameters(500, 100, 128, 82, "animate")));
-	m_gos.push_back(new Player(new Parameters(0, 350, 2, 0, 128, 82, "animate")));
+	m_gos.push_back(new Player(new Parameters(0, 350, 0, 0, 128, 82, "animate")));
+	// ************
 
 	cout << "Init success!" << endl; // everything succededs
-
-	TheInputHandler::Instance()->initialise_joysticks(); // init joysticks
 
 	return true;
 }
@@ -101,16 +103,17 @@ void Game::clean()
 {
 	cout << "Cleaning game!" << endl;
 	TheInputHandler::Instance()->clean();
-	m_bRunning = false;
 	SDL_DestroyWindow(m_pWindow);
 	SDL_DestroyRenderer(m_pRenderer);
 	SDL_Quit();
 	IMG_Quit();
 }
 
-
 void Game::quit()
-{}
+{
+	cout << "SDL Window closed!!!" << endl;
+	m_bRunning = false;
+}
 
 void Game::handleEvents() 
 {

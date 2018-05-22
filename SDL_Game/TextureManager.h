@@ -17,6 +17,8 @@ private:
 
 public:
 
+	void flip_image(SDL_RendererFlip);
+
 	/**
 	*\brief -Load an image-
 	*
@@ -53,7 +55,11 @@ public:
 	*/
 
 	static TextureManager* Instance();
-	
+
+private:
+
+	SDL_RendererFlip flip;
+
 };
 
 typedef TextureManager TheTextureManager;
