@@ -3,7 +3,7 @@
 
 SDLGameObject::SDLGameObject(const Parameters* parameters) : GameObject(parameters),
 															 m_position(parameters->get_x(), parameters->get_y()),
-															 m_velocity(parameters->get_vx(), parameters->get_vy()),
+															 m_velocity(0, 0),
 															 m_acceleration(0, 0)
 {
 	m_width = parameters->get_width();
@@ -30,16 +30,16 @@ void SDLGameObject::update()
 }
 
 
-bool SDLGameObject::in(Vector2D pos) 
+bool SDLGameObject::in(Vector2D* pos) 
 {
 	// if position is inside, return true else return false
-	if (pos.get_comp_x() > m_position.get_comp_x()                  &&
+	if (pos->get_comp_x() > m_position.get_comp_x()             &&
 
-		m_position.get_comp_x() < m_position.get_comp_x() + m_width &&
+		pos->get_comp_x() < (m_position.get_comp_x() + m_width) &&
 
-		pos.get_comp_y() > m_position.get_comp_y()                  &&
+		pos->get_comp_y() > m_position.get_comp_y()             &&
 
-		m_position.get_comp_y() < m_position.get_comp_y() - m_height)
+		pos->get_comp_y() < (m_position.get_comp_y() + m_height) )
 	{
 		return true;
 	}

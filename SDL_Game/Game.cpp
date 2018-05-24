@@ -49,7 +49,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 			{
 				// set the renderer obj
 				cout << "Renderer creation succes!" << endl;
-				SDL_SetRenderDrawColor(m_pRenderer, 255, 0, 0, 255);
+				SDL_SetRenderDrawColor(m_pRenderer, 0, 0, 0, 255);
 			}
 		}
 		else
@@ -77,7 +77,7 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update() 
 {
-	m_pGameMachineState->render();
+	m_pGameMachineState->update();
 }
 
 void Game::render() 

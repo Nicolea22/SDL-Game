@@ -22,9 +22,6 @@ public:
 	float get_x() const { return m_position.get_comp_x(); };
 	float get_y() const { return m_position.get_comp_y(); };
 
-	float get_vx() const { return m_velocity.get_comp_x(); };
-	float get_vy() const { return m_velocity.get_comp_y(); };
-
 	int get_width() const { return m_width; };
 	int get_height() const { return m_height; };
 
@@ -33,7 +30,6 @@ public:
 private:
 
 	Vector2D m_position;
-	Vector2D m_velocity;
 
 	int m_width;
 	int m_height;

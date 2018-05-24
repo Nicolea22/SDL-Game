@@ -1,2 +1,7 @@
-﻿  GameStateMachine.cpp
+﻿  Game.cpp
+  MenuState.cpp
+c:\users\leandro\source\repos\sdl-game\sdl_game\menustate.cpp(11): warning C4018: '<': no coinciden signed/unsigned
+c:\users\leandro\source\repos\sdl-game\sdl_game\menustate.cpp(19): warning C4018: '<': no coinciden signed/unsigned
+c:\users\leandro\source\repos\sdl-game\sdl_game\menustate.cpp(50): warning C4018: '<': no coinciden signed/unsigned
+  Generando código...
   SDL_Game.vcxproj -> C:\Users\Leandro\source\repos\SDL-Game\Debug\SDL_Game.exe

@@ -15,7 +15,7 @@ public:
 	virtual void update();
 	virtual void clean() {};
 	
-	virtual bool in(Vector2D pos);
+	virtual bool in(Vector2D* pos);
 
 protected:
 

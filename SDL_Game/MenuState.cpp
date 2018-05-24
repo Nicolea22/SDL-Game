@@ -35,15 +35,30 @@ bool MenuState::on_enter()
 	}
 
 	GameObject* button1 = new MenuButton(new Parameters(100, 100, 400, 100, "playButton"));
-	GameObject* button2 = new MenuButton(new Parameters(300, 100, 400, 100, "exitButton"));
+	GameObject* button2 = new MenuButton(new Parameters(100, 300, 400, 100, "exitButton"));
 
 	m_game_objects.push_back(button1);
 	m_game_objects.push_back(button2);
+
+	cout << "Entering MenuState" << endl;
 
 	return true;
 }
 
 bool MenuState::on_exit()
 {
+	for (int i = 0; i < m_game_objects.size(); i++) 
+	{
+		m_game_objects[i]->clean();
+	}
+
+	m_game_objects.clear();
+
+	TheTextureManager::Instance()->clear_from_texture_map("playButton");
+
+	TheTextureManager::Instance()->clear_from_texture_map("exitButton");
+	
+	cout << "Exiting MenuState" << endl;
+
 	return true;
 }

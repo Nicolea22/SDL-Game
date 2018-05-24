@@ -17,6 +17,11 @@ private:
 
 public:
 
+	/**
+	*\brief - Get the singleton instance of TextureManager -
+	*/
+	static TextureManager* Instance();
+
 	void flip_image(SDL_RendererFlip);
 
 	/**
@@ -50,11 +55,9 @@ public:
 	void draw_frame(string id, int x, int y, int width, int height, int current_row, int current_frame
 				   ,SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
-	/**
-	*\brief - Get the singleton instance of TextureManager -
-	*/
+	
 
-	static TextureManager* Instance();
+	void clear_from_texture_map(string id);
 
 private:
 

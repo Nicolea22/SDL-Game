@@ -49,6 +49,11 @@ void TextureManager::flip_image(SDL_RendererFlip flip)
 void TextureManager::draw(string id, int x, int y, int width, int height, SDL_Renderer* renderer,
 						  SDL_RendererFlip flip)
 {
+	if (id == " ") 
+	{
+		return;
+	}
+
 	SDL_Rect src_rect;
 	SDL_Rect dest_rect;
 
@@ -67,6 +72,11 @@ void TextureManager::draw(string id, int x, int y, int width, int height, SDL_Re
 void TextureManager::draw_frame(string id, int x, int y, int width, int height, int current_row, int current_frame,
 	SDL_Renderer* renderer, SDL_RendererFlip flip)
 {
+	if (id == " ")
+	{
+		return;
+	}
+
 	SDL_Rect src_rect;
 	SDL_Rect dest_rect;
 
@@ -83,3 +93,7 @@ void TextureManager::draw_frame(string id, int x, int y, int width, int height, 
 }
 
 
+void TextureManager::clear_from_texture_map(string id) 
+{
+	m_texture_map.erase(id);
+}

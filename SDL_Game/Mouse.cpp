@@ -6,14 +6,14 @@ Mouse* Mouse::Instance()
 {
 	if (instance == NULL)
 	{
-		instance = new Mouse();
+		instance = new Mouse(new Parameters(100, 100, 0, 0, " "));
 		return instance;
 	}
 	return instance;
 }
 
 
-Mouse::Mouse()
+Mouse::Mouse(Parameters* parameters) : SDLGameObject(parameters)
 {
 	// set mouse buttons to false
 	for (int i = First; i <= Last; i++)

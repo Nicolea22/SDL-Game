@@ -21,6 +21,8 @@ class Mouse : public SDLGameObject
 
 public:
 
+	Mouse(Parameters* parameters);
+
 	/**
 	* \brief: - returns the mouse's singleton -
 	*/

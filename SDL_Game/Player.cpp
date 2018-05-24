@@ -50,7 +50,6 @@ void Player::handle_input()
 	if (TheInputHandler::Instance()->is_key_down(SDL_SCANCODE_W))
 	{
 		// TODO: do something when 'W' is being pushed
-		cout << "WHAT A FUCKING SHIT" << endl;
 	}
 
 
