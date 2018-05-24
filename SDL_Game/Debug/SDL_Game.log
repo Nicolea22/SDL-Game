@@ -1,7 +1,4 @@
-﻿  Game.cpp
-  MenuState.cpp
-c:\users\leandro\source\repos\sdl-game\sdl_game\menustate.cpp(11): warning C4018: '<': no coinciden signed/unsigned
-c:\users\leandro\source\repos\sdl-game\sdl_game\menustate.cpp(19): warning C4018: '<': no coinciden signed/unsigned
-c:\users\leandro\source\repos\sdl-game\sdl_game\menustate.cpp(50): warning C4018: '<': no coinciden signed/unsigned
-  Generando código...
+﻿  Player.cpp
+c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(38): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(41): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
   SDL_Game.vcxproj -> C:\Users\Leandro\source\repos\SDL-Game\Debug\SDL_Game.exe

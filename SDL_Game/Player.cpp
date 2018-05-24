@@ -23,7 +23,7 @@ void Player::update()
 
 	handle_input();
 
-	m_current_frame = (int)SDL_GetTicks() / 100 % 6;
+	m_current_frame = (int)SDL_GetTicks() / 90 % 4;
 }
 
 
@@ -67,9 +67,11 @@ void Player::handle_input()
 
 	if (m_velocity.get_comp_x() < 0)
 	{
-		TheTextureManager::Instance()->flip_image(SDL_FLIP_HORIZONTAL);
+		TheTextureManager::Instance()->flip_image(SDL_FLIP_NONE);
 	}
 	else
 		if (m_velocity.get_comp_x() > 0)
-			TheTextureManager::Instance()->flip_image(SDL_FLIP_NONE);
+		{
+			TheTextureManager::Instance()->flip_image(SDL_FLIP_HORIZONTAL);
+		}
 }

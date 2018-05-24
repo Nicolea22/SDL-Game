@@ -26,4 +26,8 @@ private:
 
 	vector<GameObject*> m_game_objects;
 
+	// call back functions for menu items
+	static void s_menu_to_play();
+	static void s_exit_from_menu();
+
 };

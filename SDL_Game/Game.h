@@ -27,7 +27,7 @@ public:
 		Uint32 init_params, bool is_running = true);
 
 	/**
-	* \brief
+	* \brief - ticks the game -
 	*/
 	void update();
 
@@ -54,6 +54,8 @@ public:
 	bool running() { return m_bRunning; };
 
 	SDL_Renderer* get_renderer() const { return m_pRenderer; }
+
+	GameStateMachine* get_state_machine() { return m_pGameMachineState; }
 
 	static Game* Instance();
 

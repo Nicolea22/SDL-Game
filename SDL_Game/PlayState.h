@@ -1,5 +1,9 @@
 #pragma once
 #include "GameState.h"
+#include "GameObject.h"
+#include <vector>
+
+using namespace std;
 
 class PlayState : public GameState
 {
@@ -17,5 +21,6 @@ public:
 private:
 
 	static const string s_play_id;
+	vector<GameObject*> m_game_objects;
 
 };

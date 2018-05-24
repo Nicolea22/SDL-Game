@@ -1,4 +1,5 @@
 #include "MenuState.h"
+#include "PlayState.h"
 #include "TextureManager.h"
 #include "Game.h"
 #include "MenuButton.h"
@@ -34,8 +35,8 @@ bool MenuState::on_enter()
 		return false;
 	}
 
-	GameObject* button1 = new MenuButton(new Parameters(100, 100, 400, 100, "playButton"));
-	GameObject* button2 = new MenuButton(new Parameters(100, 300, 400, 100, "exitButton"));
+	GameObject* button1 = new MenuButton(new Parameters(100, 100, 400, 100, "playButton"), s_menu_to_play);
+	GameObject* button2 = new MenuButton(new Parameters(100, 300, 400, 100, "exitButton"), s_exit_from_menu);
 
 	m_game_objects.push_back(button1);
 	m_game_objects.push_back(button2);
@@ -54,11 +55,21 @@ bool MenuState::on_exit()
 
 	m_game_objects.clear();
 
+	// delete the textures from the map
 	TheTextureManager::Instance()->clear_from_texture_map("playButton");
-
 	TheTextureManager::Instance()->clear_from_texture_map("exitButton");
 	
 	cout << "Exiting MenuState" << endl;
 
 	return true;
+}
+
+void MenuState::s_menu_to_play()
+{
+	TheGame::Instance()->get_state_machine()->change_state(new PlayState());
+}
+
+void MenuState::s_exit_from_menu()
+{
+	TheGame::Instance()->quit();
 }

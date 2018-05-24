@@ -14,9 +14,9 @@ void MenuButton::render()
 
 void MenuButton::update()
 {
-	Vector2D* p_mouse_pos = TheInputHandler::Instance()->get_mouse_position();
+	Vector2D* mouse_pos = TheInputHandler::Instance()->get_mouse_position();
 
-	if (in(p_mouse_pos))
+	if (in(mouse_pos))
 	{
 		// 1 = left click
 		if (TheInputHandler::Instance()->get_mouse_button_state(0))
@@ -39,7 +39,6 @@ void MenuButton::update()
 	}
 
 }
-
 
 void MenuButton::clean() 
 {

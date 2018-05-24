@@ -5,8 +5,8 @@ class MenuButton : public SDLGameObject
 {
 
 public:
-	
-	MenuButton(Parameters* parameters, void (*callback)());
+
+	MenuButton(Parameters* parameters, void(*callback)());
 
 	virtual void render();
 	virtual void update();
@@ -14,9 +14,11 @@ public:
 
 private:
 
-	void (*m_callback)();
+	void(*m_callback)();
 
 	bool m_bReleased;
+
+
 
 	enum button_state 
 	{
