@@ -1,4 +1,2 @@
-﻿  Player.cpp
-c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(53): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-c:\users\leandro\source\repos\sdl-game\sdl_game\player.cpp(56): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+﻿  GameStateMachine.cpp
   SDL_Game.vcxproj -> C:\Users\Leandro\source\repos\SDL-Game\Debug\SDL_Game.exe

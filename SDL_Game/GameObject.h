@@ -15,7 +15,7 @@ public:
 	virtual void clean()= 0;
 
 protected:
-	
+
 	GameObject(const Parameters* parameters) {}
 	virtual ~GameObject() {}
 

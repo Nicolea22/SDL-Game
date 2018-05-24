@@ -2,7 +2,8 @@
 #include "Game.h"
 #include "InputHandler.h"
 #include "Enemy.h"
-#include "Player.h"
+#include "Menustate.h"
+#include "Playstate.h"
 
 using namespace std;
 
@@ -65,12 +66,9 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 		return false;
 	}
 
-	// TODO: wrap this ******** 
-	TheTextureManager::Instance()->load("assets/animatealpha.png", "animate", m_pRenderer);
-	TheTextureManager::Instance()->load("assets/background.jpg", "background", m_pRenderer);
+	m_pGameMachineState = new GameStateMachine();
 
-	m_gos.push_back(new Player(new Parameters(0, 350, 0, 0, 128, 82, "animate")));
-	// ************
+	m_pGameMachineState->change_state(new MenuState());
 
 	cout << "Init success!" << endl; // everything succededs
 
@@ -79,22 +77,14 @@ bool Game::init(const char* title, int xpos, int ypos, int width, int height, in
 
 void Game::update() 
 {
-	for (int i = 0; i < m_gos.size(); i++)
-	{
-		m_gos[i]->update();
-	}
+	m_pGameMachineState->render();
 }
 
 void Game::render() 
 {
 	SDL_RenderClear(m_pRenderer); // clear the screen with the draw color to draw a new updated frame
 	
-	TheTextureManager::Instance()->draw("background", 0, 0, 640, 480, get_renderer());
-
-	for (int i = 0; i < m_gos.size(); i++) 
-	{
-		m_gos[i]->draw();
-	}
+	m_pGameMachineState->render();
 
 	SDL_RenderPresent(m_pRenderer);
 }
@@ -118,5 +108,10 @@ void Game::quit()
 void Game::handleEvents() 
 {
 	TheInputHandler::Instance()->update();
+
+	if (TheInputHandler::Instance()->is_key_down(SDL_SCANCODE_RETURN)) 
+	{
+		m_pGameMachineState->change_state(new PlayState());
+	}
 }
 

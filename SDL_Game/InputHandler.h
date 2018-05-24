@@ -1,6 +1,7 @@
 #include "Vector2D.h"
 #include "Joystick.h"
 #include "Mouse.h"
+#include "Keyboard.h"
 
 
 using namespace std;
@@ -60,7 +61,7 @@ public:
 	*
 	* ..This function is working with Keyboard events..
 	*/
-	bool is_key_down(SDL_Scancode key_code);
+	bool is_key_down(SDL_Scancode key_code) { return TheKeyboard::Instance()->is_key_down(key_code); };
 
 	/**
 	* \brief		   - Returns the joystick of the id given by parameter -
@@ -97,7 +98,6 @@ private:
 
 	static InputHandler* instance;
 
-	const Uint8* m_keyboard_state;
 
 
 };

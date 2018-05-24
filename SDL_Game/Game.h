@@ -2,6 +2,7 @@
 #define __GAME__
 #include "SDLGameObject.h"
 #include <vector>
+#include "GameStateMachine.h"
 
 
 class Game
@@ -69,6 +70,7 @@ private:
 
 	vector<SDLGameObject*> m_gos;
 
+	GameStateMachine* m_pGameMachineState;
 };
 
 typedef Game TheGame;

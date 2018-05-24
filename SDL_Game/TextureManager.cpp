@@ -31,7 +31,7 @@ bool TextureManager::load(string file_name, string id, SDL_Renderer* renderer)
 	//if everything is ok, add the texture to our map
 	if (texture != 0) 
 	{
-		m_textureMap[id] = texture;
+		m_texture_map[id] = texture;
 		cout << "Texture " <<"'"<< id <<"'"<<" creation success!" << endl;
 		return true;
 	}
@@ -60,7 +60,7 @@ void TextureManager::draw(string id, int x, int y, int width, int height, SDL_Re
 	dest_rect.x = x;
 	dest_rect.y = y;
 
-	SDL_RenderCopyEx(renderer, m_textureMap[id], &src_rect, &dest_rect, 0, 0, flip);
+	SDL_RenderCopyEx(renderer, m_texture_map[id], &src_rect, &dest_rect, 0, 0, flip);
 }
 
 
@@ -79,7 +79,7 @@ void TextureManager::draw_frame(string id, int x, int y, int width, int height, 
 	dest_rect.x = x;
 	dest_rect.y = y;
 
-	SDL_RenderCopyEx(renderer, m_textureMap[id], &src_rect, &dest_rect, 0, 0, this->flip);
+	SDL_RenderCopyEx(renderer, m_texture_map[id], &src_rect, &dest_rect, 0, 0, this->flip);
 }
 
 

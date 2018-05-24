@@ -14,6 +14,8 @@ public:
 	virtual void draw();
 	virtual void update();
 	virtual void clean() {};
+	
+	virtual bool in(Vector2D pos);
 
 protected:
 

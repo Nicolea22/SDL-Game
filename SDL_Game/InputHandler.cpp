@@ -19,7 +19,8 @@ InputHandler* InputHandler::Instance()
 
 void InputHandler::update()
 {
-	m_keyboard_state = SDL_GetKeyboardState(0);
+
+	TheKeyboard::Instance()->set_keys_to_false();
 
 	SDL_Event event;
 
@@ -69,27 +70,8 @@ void InputHandler::update()
 		default:
 			break;
 		}
-
-		
 	}// while poll event
 }
-
-bool InputHandler::is_key_down(SDL_Scancode key)
-{
-	if (m_keyboard_state != 0) 
-	{
-		if (m_keyboard_state[key] == 1) 
-		{
-			return true;
-		}
-		else
-			return false;
-	}
-
-	return false;
-}
-
-
 
 
 

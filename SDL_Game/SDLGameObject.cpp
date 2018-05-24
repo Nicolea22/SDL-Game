@@ -28,3 +28,22 @@ void SDLGameObject::update()
 	m_position +=m_velocity;
 	m_velocity += m_acceleration;
 }
+
+
+bool SDLGameObject::in(Vector2D pos) 
+{
+	// if position is inside, return true else return false
+	if (pos.get_comp_x() > m_position.get_comp_x()                  &&
+
+		m_position.get_comp_x() < m_position.get_comp_x() + m_width &&
+
+		pos.get_comp_y() > m_position.get_comp_y()                  &&
+
+		m_position.get_comp_y() < m_position.get_comp_y() - m_height)
+	{
+		return true;
+	}
+	return false;
+}
+
+

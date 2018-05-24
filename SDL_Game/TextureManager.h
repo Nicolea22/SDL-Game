@@ -10,7 +10,7 @@ class TextureManager
 {
 private:
 
-	std::map<std::string, SDL_Texture*> m_textureMap;
+	map<std::string, SDL_Texture*> m_texture_map;
 	static TextureManager* instance;
 
 	TextureManager() {}

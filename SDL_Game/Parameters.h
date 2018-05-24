@@ -12,14 +12,12 @@ public:
 	* \brief - Parameters to initialize the game objects -
 	* \x     - starting x position -
 	* \y     - starting y position -
-	* \vx    - starting x velocity -
-	* \vy    - starting y velocity -
 	* \width - texture's width     -
 	* \height- texture's height    -
 	* \textureID - texture's identification(file name) -
 	*/      
-	Parameters(float x, float y, float vx, float vy, int width, int height, string textureID) : 
-		       m_position(x, y), m_velocity(vx, vy), m_width(width), m_height(height), m_textureID(textureID) {}
+	Parameters(float x, float y, int width, int height, string textureID) : 
+		       m_position(x, y), m_width(width), m_height(height), m_textureID(textureID) {}
 
 	float get_x() const { return m_position.get_comp_x(); };
 	float get_y() const { return m_position.get_comp_y(); };

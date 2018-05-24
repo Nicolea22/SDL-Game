@@ -1,12 +1,12 @@
 #pragma once
-#include "SDL.h"
 #include "Vector2D.h"
+#include "SDLGameObject.h"
 #include <vector>
 #include <iostream>
 
 using namespace std;
 
-class Mouse
+class Mouse : public SDLGameObject
 {
 
 /**
