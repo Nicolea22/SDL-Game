@@ -6,7 +6,7 @@ Mouse* Mouse::Instance()
 {
 	if (instance == NULL)
 	{
-		instance = new Mouse(new Parameters(100, 100, 0, 0, " "));
+		instance = new Mouse(new Parameters(100, 100, 0, 0, " ", 0, 0));
 		return instance;
 	}
 	return instance;

@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Menustate.h"
 #include "Playstate.h"
+#include "Global.h"
 
 using namespace std;
 

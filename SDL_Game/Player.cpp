@@ -1,29 +1,88 @@
 #include "Player.h"
 #include "InputHandler.h"
+#include "Game.h"
 
+Player::Player() : SDLGameObject()
+{
+	flip = SDL_FLIP_HORIZONTAL;
 
-Player::Player(const Parameters* parameters) : SDLGameObject(parameters)
-{}
+	m_velocity = 0;
+	life = 900;
+
+	go = new SDLGameObject();
+	go->load(new Parameters(m_position.get_comp_x() + 40, m_position.get_comp_y() + 30, 168, 48, "gatling", 5));
+	go->set_scale(Vector2D(0.5f, 0.5f));
+	go->set_flip(SDL_FLIP_HORIZONTAL);
+
+	set_scale(Vector2D(1.0f, 1.0f));
+
+	green_rect = new SDL_Rect();
+	red_rect = new SDL_Rect();
+
+	green_rect->h = 2;
+	green_rect->w = 60;
+
+	red_rect->h = 2;
+	red_rect->w = 60;
+
+	green_rect->x = m_position.get_comp_x() + 40;
+	green_rect->y = m_position.get_comp_y() - 40;
+
+	red_rect->x = m_position.get_comp_x() + 40;
+	red_rect->y = m_position.get_comp_y() - 40;
+}
+
+void Player::load(const Parameters* parameters) 
+{
+	SDLGameObject::load(parameters);
+}
+
+void Player::draw()
+{
+	SDLGameObject::draw();
+
+	SDL_SetRenderDrawColor(TheGame::Instance()->get_renderer(), 255, 0, 0, 0);
+	SDL_RenderFillRect(TheGame::Instance()->get_renderer(), red_rect);
+
+	SDL_SetRenderDrawColor(TheGame::Instance()->get_renderer(), 0, 255, 0, 0);
+	SDL_RenderFillRect(TheGame::Instance()->get_renderer(), red_rect);
+	
+	go->draw();
+
+}
 
 void Player::update()
 {
 	InputHandler* handler = TheInputHandler::Instance();
 
 	SDLGameObject::update();
-	
-	
-	/*
-	cout << "velocidad en x: " << m_velocity.get_comp_x() << endl;
-	cout << "velocidad en y: " << m_velocity.get_comp_y() << endl;
+	go->set_pos(Vector2D(m_position.get_comp_x() + 40, m_position.get_comp_y() + 25));
 
-	cout << endl;
-	cout << endl;
-	*/
 	m_acceleration = 0;
 
 	handle_input();
 
-	m_current_frame = (int)SDL_GetTicks() / 90 % 4;
+	if (m_velocity.get_comp_x() > 0)
+	{
+		flip = SDL_FLIP_HORIZONTAL;
+		angle = m_velocity.get_angle_arcsen();
+	}
+	else
+	{
+		if (m_velocity.get_comp_x() < 0)
+		{
+			flip = SDL_FLIP_NONE;
+			angle = -m_velocity.get_angle_arcsen();
+		}
+	}
+
+	green_rect->x = m_position.get_comp_x() + 40;
+	green_rect->y = m_position.get_comp_y() - 20;
+
+	red_rect->x = m_position.get_comp_x() + 40;
+	red_rect->y = m_position.get_comp_y() - 20;
+
+	m_current_frame = (int)SDL_GetTicks() / 100 % m_num_frames;
 }
 
 
@@ -46,32 +105,34 @@ void Player::handle_input()
 		}
 	}// if joystick initialiased
 
-	// keyboard actions
-	if (TheInputHandler::Instance()->is_key_down(SDL_SCANCODE_W))
-	{
-		// TODO: do something when 'W' is being pushed
-	}
-
-
 	// mouse actions
 	Vector2D mouse_position = *handler->get_mouse_position() + Vector2D(-64, -41);
 
+	Vector2D aux = mouse_position - m_position;
+
+	go->set_angle(aux.get_angle_arctg());
+
 	if (handler->get_mouse_button_state(0))
 	{
-		m_velocity = (mouse_position - m_position);
+		m_velocity = aux;
 
 		m_velocity.normalize();
 	}
-	else
-		m_velocity = 0;
-
-	if (m_velocity.get_comp_x() < 0)
+	else 
 	{
-		TheTextureManager::Instance()->flip_image(SDL_FLIP_NONE);
+		m_velocity = 0;
 	}
-	else
-		if (m_velocity.get_comp_x() > 0)
-		{
-			TheTextureManager::Instance()->flip_image(SDL_FLIP_HORIZONTAL);
-		}
+
+	// keyboard actions
+	if (TheInputHandler::Instance()->is_key_down(SDL_SCANCODE_W))
+	{
+		m_velocity.set_comp_y(-.9f);
+		m_velocity.set_comp_x(0);
+	}
+
+	if (TheInputHandler::Instance()->is_key_down(SDL_SCANCODE_S))
+	{
+		m_velocity.set_comp_y(.9f);
+		m_velocity.set_comp_x(0);
+	}
 }

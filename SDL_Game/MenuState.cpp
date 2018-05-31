@@ -1,9 +1,12 @@
 #include "MenuState.h"
 #include "PlayState.h"
+#include "PauseState.h"
 #include "TextureManager.h"
+#include "InputHandler.h"
 #include "Game.h"
 #include "MenuButton.h"
 #include "Parameters.h"
+#include "Global.h"
 
 const string MenuState::s_menu_id = "MENU";
 
@@ -35,11 +38,14 @@ bool MenuState::on_enter()
 		return false;
 	}
 
-	GameObject* button1 = new MenuButton(new Parameters(100, 100, 400, 100, "playButton"), s_menu_to_play);
-	GameObject* button2 = new MenuButton(new Parameters(100, 300, 400, 100, "exitButton"), s_exit_from_menu);
+	GameObject* play_button = new MenuButton(s_menu_to_play);
+	play_button->load(new Parameters(100, 100, 400, 100, "playButton", 3));
 
-	m_game_objects.push_back(button1);
-	m_game_objects.push_back(button2);
+	GameObject* exit_button = new MenuButton(s_exit_from_menu);
+	exit_button->load(new Parameters(100, 300, 400, 100, "exitButton", 3));
+
+	m_game_objects.push_back(play_button);
+	m_game_objects.push_back(exit_button);
 
 	cout << "Entering MenuState" << endl;
 

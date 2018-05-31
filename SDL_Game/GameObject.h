@@ -14,9 +14,11 @@ public:
 	virtual void update()= 0;
 	virtual void clean()= 0;
 
+	virtual void load(const Parameters* parameters) = 0;
+
 protected:
 
-	GameObject(const Parameters* parameters) {}
+	GameObject() {}
 	virtual ~GameObject() {}
 
 };

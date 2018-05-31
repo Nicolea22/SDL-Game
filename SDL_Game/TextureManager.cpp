@@ -1,6 +1,8 @@
 #include "TextureManager.h"
 #include <iostream>
 
+using namespace std;
+
 TextureManager* TextureManager::instance = 0;
 
 TextureManager* TextureManager::Instance()
@@ -41,11 +43,6 @@ bool TextureManager::load(string file_name, string id, SDL_Renderer* renderer)
 	return false;
 }
 
-void TextureManager::flip_image(SDL_RendererFlip flip) 
-{
-	this->flip = flip;
-}
-
 void TextureManager::draw(string id, int x, int y, int width, int height, SDL_Renderer* renderer,
 						  SDL_RendererFlip flip)
 {
@@ -70,7 +67,7 @@ void TextureManager::draw(string id, int x, int y, int width, int height, SDL_Re
 
 
 void TextureManager::draw_frame(string id, int x, int y, int width, int height, int current_row, int current_frame,
-	SDL_Renderer* renderer, SDL_RendererFlip flip)
+	float angle, Vector2D scale, SDL_Renderer* renderer, SDL_RendererFlip flip)
 {
 	if (id == " ")
 	{
@@ -83,13 +80,17 @@ void TextureManager::draw_frame(string id, int x, int y, int width, int height, 
 	src_rect.x = width * current_frame;
 	src_rect.y = height * current_row;
 
-	src_rect.w = dest_rect.w = width;
-	src_rect.h = dest_rect.h = height;
+	src_rect.w = width;
+	src_rect.h = height;
+
+	dest_rect.w = width * scale.get_comp_x();
+	dest_rect.h = height * scale.get_comp_y();
+
 
 	dest_rect.x = x;
 	dest_rect.y = y;
 
-	SDL_RenderCopyEx(renderer, m_texture_map[id], &src_rect, &dest_rect, 0, 0, this->flip);
+	SDL_RenderCopyEx(renderer, m_texture_map[id], &src_rect, &dest_rect, angle, 0, flip);
 }
 
 

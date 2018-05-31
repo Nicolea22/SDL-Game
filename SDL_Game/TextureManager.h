@@ -3,14 +3,13 @@
 #include <map>
 #include <SDL.h>
 #include <SDL_image.h>
-
-using namespace std;
+#include "Vector2D.h"
 
 class TextureManager
 {
 private:
 
-	map<std::string, SDL_Texture*> m_texture_map;
+	std::map<std::string, SDL_Texture*> m_texture_map;
 	static TextureManager* instance;
 
 	TextureManager() {}
@@ -22,8 +21,6 @@ public:
 	*/
 	static TextureManager* Instance();
 
-	void flip_image(SDL_RendererFlip);
-
 	/**
 	*\brief -Load an image-
 	*
@@ -31,12 +28,12 @@ public:
 	*\parameter id - texture identification -
 	*\parameter renderer - obj to draw -
 	*/
-	bool load(string file_name, string id, SDL_Renderer* renderer);
+	bool load(std::string file_name, std::string id, SDL_Renderer* renderer);
 
 	/**
 	*\brief draw -draw an entire sprite sheet on the screen-
 	*/
-	void draw(string id, int x, int y, int width, int height, SDL_Renderer* renderer, 
+	void draw(std::string id, int x, int y, int width, int height,SDL_Renderer* renderer, 
 			  SDL_RendererFlip flip = SDL_FLIP_NONE);
 	
 	/**
@@ -52,16 +49,12 @@ public:
 	*\parameter renderer - obj to draw -
 	*\parameter flip - flip the texture - default value= 'SDL_FLIP_NONE'
 	*/
-	void draw_frame(string id, int x, int y, int width, int height, int current_row, int current_frame
-				   ,SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
+	void draw_frame(std::string id, int x, int y, int width, int height, int current_row, int current_frame, float angle,
+				   Vector2D scale ,SDL_Renderer* renderer, SDL_RendererFlip flip = SDL_FLIP_NONE);
 
 	
 
-	void clear_from_texture_map(string id);
-
-private:
-
-	SDL_RendererFlip flip;
+	void clear_from_texture_map(std::string id);
 
 };
 

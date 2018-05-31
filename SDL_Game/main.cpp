@@ -1,8 +1,12 @@
 #include "Game.h"
+#include "Global.h"
+#include "Conio.h"
+
+// ADAPT PLAYER OBJECT WITH THE NEW FEATURES
+
 
 int main(int argc, char* argv[])
 {
-
 	const int FPS = 60;
 	const int DELAY_TIME = 1000.0f / FPS; // 16,6 miliseconds
 
@@ -26,8 +30,10 @@ int main(int argc, char* argv[])
 		{
 			SDL_Delay((int)(DELAY_TIME - frame_time));
 		}
+
 	}
-		TheGame::Instance()->clean();
+	
+	TheGame::Instance()->clean();
 	return 0;
 }
 

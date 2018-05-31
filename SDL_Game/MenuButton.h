@@ -1,3 +1,4 @@
+#pragma once
 #include "Parameters.h"
 #include "SDLGameObject.h"
 
@@ -6,9 +7,10 @@ class MenuButton : public SDLGameObject
 
 public:
 
-	MenuButton(Parameters* parameters, void(*callback)());
+	MenuButton(void(*callback)());
 
-	virtual void render();
+	virtual void load(const Parameters* parameters);
+	virtual void draw();
 	virtual void update();
 	virtual void clean();
 

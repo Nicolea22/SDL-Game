@@ -1,3 +1,4 @@
+#pragma once
 #include "Vector2D.h"
 #include "Joystick.h"
 #include "Mouse.h"

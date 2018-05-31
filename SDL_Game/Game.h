@@ -4,7 +4,6 @@
 #include <vector>
 #include "GameStateMachine.h"
 
-
 class Game
 {
 public:

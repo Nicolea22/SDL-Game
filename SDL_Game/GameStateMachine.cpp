@@ -1,5 +1,8 @@
 #include "GameStateMachine.h"
+#include "Global.h"
+#include <iostream>
 
+using namespace std;
 
 void GameStateMachine::update() 
 {
